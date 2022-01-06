@@ -1,0 +1,12 @@
+[package]
+name = "kvarn-postfix-admin-reverse-proxy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+kvarn = { git = "https://github.com/Icelk/kvarn", default-features = false, features = ["all-compression"] }
+kvarn-extensions = { git = "https://github.com/Icelk/kvarn", default-features = false, features = ["php"] }
+tokio = { version = "^1.15", features = ["macros", "rt-multi-thread"] }
+env_logger = "^0.9"
