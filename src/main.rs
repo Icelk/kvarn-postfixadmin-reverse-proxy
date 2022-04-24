@@ -9,8 +9,8 @@ async fn main() {
     kvarn_extensions::php(
         &mut extensions,
         kvarn_extensions::Connection::UnixSocket(Path::new("/run/postfixadmin/postfixadmin.sock")),
+        None::<fn(&FatRequest, &Host) -> bool>,
     );
-    extensions.with_csp(Csp::new().arc());
 
     let mut host_options = host::Options::new();
     host_options.folder_default = Some("index.php".into());
@@ -27,7 +27,7 @@ async fn main() {
 
     let shutdown_manager = RunConfig::new()
         .bind(port_descriptor)
-        .disable_handover()
+        .disable_ctl()
         .execute()
         .await;
     shutdown_manager.wait().await;
